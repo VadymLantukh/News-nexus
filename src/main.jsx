@@ -6,11 +6,15 @@ import App from "./components/App/App.jsx";
 
 import "./reset.module.css";
 import "modern-normalize";
+import { Provider } from "react-redux";
+import { store } from "./redux/store.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </StrictMode>
 );
