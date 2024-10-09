@@ -16,7 +16,7 @@ export const newsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchNewsThunk.fulfilled, (state, action) => {
-        state.newsItems = action.payload;
+        state.newsItems = [...state.newsItems, ...action.payload];
         state.isError = false;
         state.isLoading = false;
       })

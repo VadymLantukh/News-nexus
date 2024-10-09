@@ -10,7 +10,7 @@ const Navigate = () => {
         Home
       </NavLink>
       <NavLink className={addActive} to="/search">
-        Search
+        Other
       </NavLink>
     </nav>
   );
