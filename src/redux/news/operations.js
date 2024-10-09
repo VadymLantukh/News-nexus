@@ -1,17 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.url = "https://api.worldnewsapi.com/";
-const keyApi = "f819e0089b7e458984b8697efedc0ddd";
+axios.defaults.baseURL = "https://newsapi.org/";
 
 export const fetchNewsThunk = createAsyncThunk(
   "news/fetchTop",
-  async (_, thunkAPI) => {
+  async (page, thunkAPI) => {
     try {
-      const response = await axios.get("/top-news", {
-        params: { "x-api-key": keyApi },
+      const { data } = await axios.get("/v2/top-headlines", {
+        params: {
+          apiKey: "ee33550eda354708b7682fbf8d374bb8",
+          country: "us",
+          pageSize: 15,
+          page: page,
+        },
       });
-      return response;
+      return data.articles;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
