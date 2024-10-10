@@ -1,27 +1,31 @@
 import { useDispatch } from "react-redux";
 import { searchNewsThunk } from "../../redux/filter/operations";
-
+import { Field, Formik, Form } from "formik";
+import toast from "react-hot-toast";
 
 const SearchForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const form = evt.currentTarget;
-    const searchQuery = form.elements.filter.value.trim();
+  const handleSubmit = ({ query }, actions) => {
+    const clearQuery = query.trim();
 
-    if (searchQuery === "") return;
+    if (clearQuery === "") {
+      toast.error("Please enter search fields");
+      return;
+    }
 
-    dispatch(searchNewsThunk(searchQuery));
-    form.reset();
+    dispatch(searchNewsThunk(clearQuery));
+    actions.resetForm();
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="filter" placeholder="Search?" />
-        <button type="submit">Search</button>
-      </form>
+      <Formik onSubmit={handleSubmit} initialValues={{ query: "" }}>
+        <Form>
+          <Field type="text" name="query" placeholder="Search?" />
+          <button type="submit">Search</button>
+        </Form>
+      </Formik>
     </>
   );
 };

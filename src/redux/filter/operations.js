@@ -10,8 +10,7 @@ export const searchNewsThunk = createAsyncThunk(
           q: query,
         },
       });
-      console.log(data.articles);
-      return data.articles;
+      return data.articles; 
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

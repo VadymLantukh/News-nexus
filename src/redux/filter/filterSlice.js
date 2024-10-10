@@ -16,7 +16,7 @@ export const filterNews = createSlice({
         state.isLoading = true;
       })
       .addCase(searchNewsThunk.fulfilled, (state, action) => {
-        state.filterNews = [...state.filterNews, ...action.payload];
+        state.filterNews = action.payload;
         state.isError = false;
         state.isLoading = false;
       })

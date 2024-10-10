@@ -5,7 +5,7 @@ axios.defaults.baseURL = "https://newsapi.org/";
 axios.defaults.params = {
   apiKey: "ee33550eda354708b7682fbf8d374bb8",
   country: "us",
-  pageSize: 10,
+  pageSize: 2,
 };
 
 export const fetchNewsThunk = createAsyncThunk(

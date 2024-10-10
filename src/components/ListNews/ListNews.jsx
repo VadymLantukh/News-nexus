@@ -1,16 +1,13 @@
-import { useSelector } from "react-redux";
-import { selectNewsItems } from "../../redux/news/selectors";
 import ItemNews from "../ItemNews/ItemNews";
 
-const ListNews = () => {
-  const listNews = useSelector(selectNewsItems);
+const ListNews = ({ news }) => {
 
   return (
     <ul>
-      {listNews.map((news, index) => {
+      {news.map((item, index) => {
         return (
           <li key={index}>
-            <ItemNews {...news} />
+            <ItemNews {...item} />
           </li>
         );
       })}
