@@ -16,16 +16,14 @@ const HomePage = () => {
 
   const handleClick = () => {
     setPage(page + 1);
+    dispatch(fetchNewsThunk(page));
   };
 
   useEffect(() => {
-    dispatch(fetchNewsThunk(page));
-    console.log(1)
-
     if (isLastPage && page > 1) {
       toast.error("The list of news in this region is over");
     }
-  }, [dispatch, page, isLastPage]);
+  }, [page, isLastPage]);
 
   return (
     <>
